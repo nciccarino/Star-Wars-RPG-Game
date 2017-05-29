@@ -1,0 +1,49 @@
+body {
+	background: url("../images/background.jpg") no-repeat center center fixed; 
+	-webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;	
+}
+
+.container {
+	font-family: 'Audiowide', cursive;
+}
+
+.jumbotron {
+	background-color: white;
+}
+
+.char-image {
+	display: inline-block;
+  	height: 175px;
+	padding: 0px 20px 0px 20px;
+	margin: 0px 2px 0px 2px;
+	background-color: white;
+	border: solid;
+	border-color: green;
+}
+
+#obi-image {
+	width: 100px;
+	height: 100px;
+}
+
+#luke-image {
+	width: 100px;
+	height: 100px;
+}
+
+#sidious-image {
+	width: 100px;
+	height: 100px;
+}
+
+#vader-image {
+	width: 100px;
+	height: 100px;
+}
+
+#active-area {
+	color: red;
+}
