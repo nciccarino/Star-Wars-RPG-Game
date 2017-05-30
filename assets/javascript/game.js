@@ -34,28 +34,30 @@ var gameOver = false;
 //Objects for Characters
 
 	//obi
-var obi = document.getElementById("obi") {
+
+	//tried document.getElementById("") but didn't work
+var obi = {
 	name: "Obi-Wan Kenobi",
 	HP: 120,
 	baseAttack: 8,
 	attack: 8
 };
 	//luke
-var luke = document.getElementById("luke") {
+var luke = {
 	name: "Luke Skywalker",
 	HP: 100,
 	baseAttack: 6,
 	attack: 6, 
 };
 	//sidious
-var sidious = document.getElementById("sidious") {
+var sidious = {
 	name: "Darth Sidious",
 	HP: 150,
 	baseAttack: 12, 
 	attack: 12, 
 };
 	//vader
-var vader = document.getElementById("vader") {
+var vader = {
 	name: "Darth Vader",
 	HP: 180,
 	baseAttack: 14,
