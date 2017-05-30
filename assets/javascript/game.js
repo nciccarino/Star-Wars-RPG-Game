@@ -73,18 +73,35 @@ var gameOver = false;
 
 //choose character
 function loadCharacter (choseCharacter) {
-	character.name = choseCharacter.name 
-	character.HP = choseCharacter.HP
-	character.baseAttack = choseCharacter.baseAttack
-	character.attack = choseCharacter.attack
+	if (choseCharacter == "obi" ) {
+		character = obi; 
+	}
+	if (choseCharacter == "luke" ) {
+		character = luke; 
+	}
+	if (choseCharacter == "sidious" ) {
+		character = sidious; 
+	}
+	if (choseCharacter == "vader" ) {
+		character = vader; 
+	}
 }
 
 //choose defender
 function loadDefender (choseDefender) {
-	character.name = choseDefender.name 
-	character.HP = choseDefender.HP
-	character.baseAttack = choseDefender.baseAttack
-	character.attack = choseDefender.attack
+	if (loadDefender == "obi" ) {
+		defender = obi; 
+	}
+	if (loadDefender == "luke" ) {
+		defender = luke; 
+	}
+	if (loadDefender == "sidious" ) {
+		defender = sidious; 
+	}
+	if (loadDefender == "vader" ) {
+		defender = vader; 
+	}
+
 }
 
 //move others to enemies--- tried in clicks section 
@@ -94,14 +111,14 @@ function moveEnemies () {
 }
 
 //move character selected USED FOR SECOND ATTEMPT
-function moveCharacter () {
-	$(".available-characters").removeClass("available-characters").addClass("chosen-character");
+function moveCharacter (characterId) {
+	$("#" + characterId).removeClass("available-characters").addClass("chosen-character");
 	$("#chose-character").append($(".chosen-character")); 
 }
 
 //move defender selected USED FOR SECOND ATTEMPT
-function moveDefender () {
-	$(".available-characters").removeClass("available-characters").addClass("defend-character");
+function moveDefender (defenderId) {
+	$("#" + defenderId).removeClass("available-characters").addClass("defend-character");
 	$("#defend-area").append($(".defend-character")); 
 }
 
@@ -112,6 +129,7 @@ function moveDefender () {
 //-------------------clicks and if/else statements-------
 
  $(document).ready(function(){
+
 
  //--------------------First Attempt----------------------
 // 	$(".char-image").on("click", function(){
@@ -170,28 +188,38 @@ function moveDefender () {
 
 $(".char-image").on("click", function(){
 		console.log("Character Selected");
-		characterSelect = true; 
+		console.log(this);
+		console.log(this.id);
+		// if (this.id == "obi") {
+		// 	alert("yes!");
+		// }
 
-
-		if(characterSelect == true) {
+		if(characterSelect === false) {
 			//$("#message-area").empty();
 
-			loadCharacter(this.id == "char-image"); //start of biggest problems
-			characterSelect = true; 
+				var characterId = $(this).attr("id");
 
-			moveCharacter(this.id == "char-image"); 
+				loadCharacter(characterId);
+				moveCharacter(characterId);
+				moveEnemies(); 
+				characterSelect = true;
 
-			moveEnemies();
+			// loadCharacter(this.id == "char-image"); //start of biggest problems
+			// characterSelect = true; 
 
-		} else if ((characterSelect == true) && (defenderSelected == false)) {
-			if ($(this.id == "char-image").hasClass("listEnemies")){
+			// moveCharacter(this.id == "char-image"); 
+
+			// moveEnemies();
+
+		} else if ((characterSelect === true) && (defenderSelected === false)) {
+			//if ($(this.id == "char-image").hasClass("listEnemies")){
 				//$("message-area").empty(); 
+				var defenderId = $(this).attr("id");
 
-				loadDefender(this.id == "char-image");
+				loadDefender(defenderId);
+				moveDefender(defenderId); 
 				defenderSelected = true; 
-
-				moveDefender(this.id == "char-image"); 
-			}
+			//}
 
 		}
 	});
@@ -199,3 +227,8 @@ $(".char-image").on("click", function(){
 //List above second attempt out individually for each character? Kinda want one function for all 
 
 }); //end of $(document).ready
+
+// $( "p" ).click(function() {
+//   var htmlString = $( this ).html();
+//   $( this ).text( htmlString );
+// });
