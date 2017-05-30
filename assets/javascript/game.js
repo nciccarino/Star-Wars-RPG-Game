@@ -19,50 +19,55 @@
 
 //Global Variables 
 
-var characterSelect = false;
-
-var defenderSelected = false;
-
 var character = {};
 
 var defender = {};
 
-var enemiesDefeated = 0;
+var characterSelect = false;
+
+var defenderSelected = false;
 
 var gameOver = false; 
 
 //Objects for Characters
 
-	//obi
-
 	//tried document.getElementById("") but didn't work
-var obi = {
-	name: "Obi-Wan Kenobi",
-	HP: 120,
-	baseAttack: 8,
-	attack: 8
-};
-	//luke
-var luke = {
-	name: "Luke Skywalker",
-	HP: 100,
-	baseAttack: 6,
-	attack: 6, 
-};
-	//sidious
-var sidious = {
-	name: "Darth Sidious",
-	HP: 150,
-	baseAttack: 12, 
-	attack: 12, 
-};
-	//vader
-var vader = {
-	name: "Darth Vader",
-	HP: 180,
-	baseAttack: 14,
-	attack: 14, 
-};
+// var character = ["obi", "luke", "sidious", "vader"]; 
+	
+// 	var character[0] = name: "Obi-Wan Kenobi", HP: 120, baseAttack: 8, attack: 8; 
+// 	var character[1] = name: "Luke Skywalker", HP: 100, baseAttack: 6, attack: 6;
+// 	var character[2] = name: "Darth Sidious", HP: 150, baseAttack: 12, attack: 12;
+// 	var character[3] = name: "Darth Vader", HP: 180, baseAttack: 14, attack: 14;
+
+		//obi
+	var obi = {
+		name: "Obi-Wan Kenobi",
+		HP: 120,
+		baseAttack: 8,
+		attack: 8
+	};
+		//luke
+	var luke = {
+		name: "Luke Skywalker",
+		HP: 100,
+		baseAttack: 6,
+		attack: 6, 
+	};
+		//sidious
+	var sidious = {
+		name: "Darth Sidious",
+		HP: 150,
+		baseAttack: 12, 
+		attack: 12, 
+	};
+		//vader
+	var vader = {
+		name: "Darth Vader",
+		HP: 180,
+		baseAttack: 14,
+		attack: 14, 
+	};
+//}; //for function 
 
 //-------------------Functions---------------------------
 
@@ -88,13 +93,13 @@ function moveEnemies () {
 	$("#choose-attack").append($(".listEnemies")); 
 }
 
-//move character selected
+//move character selected USED FOR SECOND ATTEMPT
 function moveCharacter () {
 	$(".available-characters").removeClass("available-characters").addClass("chosen-character");
 	$("#chose-character").append($(".chosen-character")); 
 }
 
-//move defender selected
+//move defender selected USED FOR SECOND ATTEMPT
 function moveDefender () {
 	$(".available-characters").removeClass("available-characters").addClass("defend-character");
 	$("#defend-area").append($(".defend-character")); 
@@ -132,30 +137,65 @@ function moveDefender () {
 // 	});
 //--------------------End First Attempt-------------------
 
-	$(".char-image").on("click", function(){
+//--------------------Second Attempt----------------------
+
+	// $(".char-image").on("click", function(){
+	// 	console.log("Character Selected");
+
+	// 	if(characterSelect == false) {
+	// 		$("#message-area").empty();
+
+	// 		//for loop?
+	// 		loadCharacter(this.id == "char-image"); //start of biggest problems
+	// 		characterSelect = true; 
+
+	// 		moveCharacter(this.id == "char-image"); 
+
+	// 		moveEnemies();
+
+	// 	} else if ((characterSelect == true) && (defenderSelected == false)) {
+	// 		if ($(this).hasClass("listEnemies")){
+	// 			$("message-area").empty(); 
+
+	// 			loadDefender(this.id == "char-image");
+	// 			defenderSelected = true; 
+
+	// 			moveDefender(this.id == "char-image"); 
+	// 		}
+
+	// 	}
+	// });
+
+//-------------------End Second Attempt-------------------
+
+$(".char-image").on("click", function(){
 		console.log("Character Selected");
+		characterSelect = true; 
 
-		if(characterSelect == false) {
-			$("#message-area").empty();
 
-			loadCharacter(this);
+		if(characterSelect == true) {
+			//$("#message-area").empty();
+
+			loadCharacter(this.id == "char-image"); //start of biggest problems
 			characterSelect = true; 
 
-			moveCharacter(this); 
+			moveCharacter(this.id == "char-image"); 
 
 			moveEnemies();
 
 		} else if ((characterSelect == true) && (defenderSelected == false)) {
-			if ($(this).hasClass("listEnemies")){
-				$("message-area").empty(); 
+			if ($(this.id == "char-image").hasClass("listEnemies")){
+				//$("message-area").empty(); 
 
-				loadDefender(this);
+				loadDefender(this.id == "char-image");
 				defenderSelected = true; 
 
-				moveDefender(this); 
+				moveDefender(this.id == "char-image"); 
 			}
 
 		}
 	});
 
-});
+//List above second attempt out individually for each character? Kinda want one function for all 
+
+}); //end of $(document).ready
