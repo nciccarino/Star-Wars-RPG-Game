@@ -184,19 +184,18 @@ $(document).ready(function(){
 					$("#game-alert").html("<p>You were defeated!</p><p>Play again?</p>");
           			$("#restart").show();
 				} 
-			}	else {
+			}	else { //defender is defeated-- remove them
 				$(".defendCharacter").hide();
 				enemiesDefeated++; 
 				defenderSelect = false; 
 				$("#game-alert").html("<p>You have defeated " + defender.name + ". Choose another enemy.</p>");
-        		//$(".defendCharacter").hide();
-			}
-
-				//defender is defeated-- remove them 
-
-				//check if the character has won the game by beating 3 defenders
-
-		}; 
+				if (enemiesDefeated === 3) { //check if the character has won the game by beating 3 defenders
+					gameOver = true; 
+					$("#game-alert").html("<p>You won!</p><p>Play again?</p>");
+          			$("#restart").show();
+				}
+			} 
+		}
 
 	});
 
