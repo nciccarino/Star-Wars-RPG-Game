@@ -155,7 +155,7 @@ $(document).ready(function(){
 				loadDefender(defenderId);
 				moveDefender(defenderId); 
 				defenderSelect = true; 
-				$("#game-alert2").html("<p>You chose " + defender.name + " as your enemy</p>")
+				$("#game-alert").html("<p>You chose " + defender.name + " as your enemy</p>")
 		}
 	});
 
@@ -163,15 +163,34 @@ $(document).ready(function(){
 		console.log("Attack clicked"); 
 
 		//Character is ready to attack the defender
-		if (characterSelect && defenderSelect && !gameOver) {
+		if (characterSelect === true && defenderSelect === true && !gameOver === true) {
 			//Character attacks the defender and decreases the defender's HP
 			defender.HP = defender.HP - character.attack; 
-			$("#defend-area").children(".HP").html(defender.HP); 
+			$(".defendCharacter").children(".HP").html(defender.HP); 
+			console.log(defender.HP);
+			$("#game-alert").html("<p>You attacked " + defender.name + " for " + character.attack + " damage</p>");
 			//Character's attack power increases
-
+			character.attack = character.attack + character.baseAttack;
 			//If defender is still alive, they counter the character
+			if (defender.HP > 0) {
+				character.HP = character.HP - defender.baseAttack; 
+				$(".chosen-character").children(".HP").html(character.HP); 
 
 				//check if character survives the attack 
+				if (character.HP > 0) {
+					$("#game-alert").append("<p>" + defender.name + " attacked you back for " + defender.baseAttack + " damage.</p>");
+				} else { //if he doesnt survive the attack
+					gameOver = true; 
+					$("#game-alert").html("<p>You were defeated!</p><p>Play again?</p>");
+          			$("#restart").show();
+				} 
+			}	else {
+				$(".defendCharacter").hide();
+				enemiesDefeated++; 
+				defenderSelect = false; 
+				$("#game-alert").html("<p>You have defeated " + defender.name + ". Choose another enemy.</p>");
+        		//$(".defendCharacter").hide();
+			}
 
 				//defender is defeated-- remove them 
 
