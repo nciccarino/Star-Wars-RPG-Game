@@ -1,22 +1,3 @@
-//Pick Character function 
-	//moves to your character area 
-	//moves enemies to available area 
-
-//Pick Defender function 
-	//moves to defender area 
-	//defeated is removed 
-
-//Attack function
-	//HP counters
-
-//Messages 
-	//Messages appear 
-	//after you are defeated or win restart appears 
-
-//maybe add a wins and losses function as well but not required 
-
-//----------------Start Here------------------
-
 //Global Variables 
 
 var character = {};
@@ -106,27 +87,23 @@ function loadDefender (choseDefender) {
 
 }
 
-//move others to enemies--- tried in clicks section 
+//move others to enemies
 function moveEnemies () {
 	$(".available-characters").removeClass("available-characters").addClass("listEnemies");
 	$("#choose-attack").append($(".listEnemies")); 
 }
 
-//move character selected USED FOR SECOND ATTEMPT
+//move character selected
 function moveCharacter (characterId) {
 	$("#" + characterId).removeClass("available-characters").addClass("chosen-character");
 	$("#chose-character").append($(".chosen-character")); 
 }
 
-//move defender selected USED FOR SECOND ATTEMPT
+//move defender selected
 function moveDefender (defenderId) {
 	$("#" + defenderId).removeClass("available-characters").addClass("defendCharacter");
 	$("#defend-area").append($(".defendCharacter")); 
 }
-
-//restart game 
-
-
 
 //-------------------clicks and if/else statements-------
 
@@ -192,7 +169,6 @@ $(document).ready(function(){
 				if (enemiesDefeated === 3) { //check if the character has won the game by beating 3 defenders
 					gameOver = true; 
 					$("#game-alert").html("<p>You won!</p><p>Play again?</p>");
-          			$("#restart").show();
 				}
 			} 
 		}
@@ -201,8 +177,8 @@ $(document).ready(function(){
 
 	$("#restart").on("click", function(){
 		console.log("restart clicked");
+		location.reload(); 
 
-		restartGame(); 
 	}); //reset area
 
 
