@@ -125,12 +125,17 @@ $(document).ready(function(){
 				$("#game-alert").html("<p>You chose " + character.name + " as your character</p>")
 
 		} else if ((characterSelect === true) && (defenderSelect === false)) { //if your character is selected but not an enemy 
+				
+//----- add in new else statement for character not becoming enemy
+
+			if (!($(this).hasClass("chosen-character"))) {
 				var defenderId = $(this).attr("id"); //picks your enemy
 
 				loadDefender(defenderId);
 				moveDefender(defenderId); 
 				defenderSelect = true; 
 				$("#game-alert").html("<p>You chose " + defender.name + " as your enemy</p>")
+			}
 		}
 	});
 
