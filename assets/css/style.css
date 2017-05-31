@@ -11,7 +11,17 @@ body {
 }
 
 .jumbotron {
-	background-color: white;
+	background: url("../images/headerbackground.png") center; 
+	padding: 0;
+	width: 100%;
+}
+
+#title {
+	color: white;
+}
+
+#sub-title {
+	color: white;
 }
 
 .char-image {
@@ -46,4 +56,5 @@ body {
 
 #active-area {
 	color: red;
+	padding: 10px;
 }

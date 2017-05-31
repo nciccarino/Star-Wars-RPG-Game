@@ -105,9 +105,8 @@ function moveDefender (defenderId) {
 	$("#defend-area").append($(".defendCharacter")); 
 }
 
-//-------------------clicks and if/else statements-------
-
 $(document).ready(function(){
+//-------------------Section 1 movement------------------
 
 	$(".char-image").on("click", function(){ //if no characters are selected
 		console.log("Character Selected");
@@ -125,8 +124,7 @@ $(document).ready(function(){
 				characterSelect = true;
 				$("#game-alert").html("<p>You chose " + character.name + " as your character</p>")
 
-		} else if ((characterSelect === true) && (defenderSelect === false)) { //if your character is selected but not an enemy
-			
+		} else if ((characterSelect === true) && (defenderSelect === false)) { //if your character is selected but not an enemy 
 				var defenderId = $(this).attr("id"); //picks your enemy
 
 				loadDefender(defenderId);
@@ -136,11 +134,13 @@ $(document).ready(function(){
 		}
 	});
 
+//-------------------Section 2 points--------------------
+
 	$("#attackButton").on("click", function(){
 		console.log("Attack clicked"); 
 
 		//Character is ready to attack the defender
-		if (characterSelect === true && defenderSelect === true && !gameOver === true) {
+		if (characterSelect && defenderSelect&& !gameOver) {
 			//Character attacks the defender and decreases the defender's HP
 			defender.HP = defender.HP - character.attack; 
 			$(".defendCharacter").children(".HP").html(defender.HP); 
@@ -174,6 +174,8 @@ $(document).ready(function(){
 		}
 
 	});
+
+//-------------------Section 3 reset---------------------
 
 	$("#restart").on("click", function(){
 		console.log("restart clicked");
